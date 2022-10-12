@@ -1,0 +1,131 @@
+stats:
+  - codename: health
+    name: 'Здоровье'
+    start: 100
+    min: 0
+    max: 100
+  - codename: mana
+    name: 'Алкоголь в крови'
+    start: 0
+    min: 0
+    max: 100
+  - codename: happiness
+    name: 'Жизнерадостность'
+    start: 0
+    min: -10
+    max: 10
+  - codename: fatigue
+    name: 'Усталость'
+    start: 0
+    min: 0
+    max: 100
+  - codename: money
+    name: 'Деньги'
+    start: 100
+
+actions:
+  - codename: work
+    name: 'Пойти на работу'
+    conditions:
+      - stat: mana
+        op: '<'
+        val: 50
+      - stat: fatigue
+        op: '<'
+        val: 10
+    result:
+      - stat: happiness
+        val: -5
+      - stat: mana
+        val: -30
+      - stat: money
+        val: 100
+      - stat: fatigue
+        val: 70
+  - codename: observe-nature
+    name: 'Созерцать природу'
+    result:
+      - stat: happiness
+        val: 1
+      - stat: mana
+        val: -10
+      - stat: fatigue
+        val: 10
+  - codename: watch-tv
+    name: 'Пить вино и смотреть сериал'
+    result:
+      - stat: happiness
+        val: -1
+      - stat: mana
+        val: 30
+      - stat: fatigue
+        val: 10
+      - stat: health
+        val: -5
+      - stat: money
+        val: -20
+  - codename: visit-bar
+    name: 'Сходить в бар'
+    result:
+      - stat: happiness
+        val: 1
+      - stat: mana
+        val: 60
+      - stat: fatigue
+        val: 40
+      - stat: health
+        val: -10
+      - stat: money
+        val: -100
+  - codename: drink-together
+    name: 'Выпить с маргинальными личностями'
+    result:
+      - stat: happiness
+        val: 5
+      - stat: health
+        val: -80
+      - stat: mana
+        val: 90
+      - stat: fatigue
+        val: 80
+      - stat: money
+        val: -150
+  - codename: street-artist
+    name: 'Петь в метро'
+    result:
+      - stat: happiness
+        val: 1
+      - stat: mana
+        val: 10
+      - stat: money
+        val: 10
+      - stat: money
+        val: 50
+        conditions:
+          - stat: alcohol
+            op: '>'
+            val: 40
+          - stat: alcohol
+            op: '<'
+            val: 70
+      - stat: fatigue
+        val: 20
+  - codename: sleep
+    name: 'Спать'
+    result:
+      - stat: health
+        val: 90
+        conditions:
+          - stat: alcohol
+            op: '<'
+            val: 30
+      - stat: happiness
+        val: -3
+        conditions:
+          - stat: alcohol
+            op: '>'
+            val: 70
+      - stat: mana
+        val: -50
+      - stat: fatigue
+        val: -70
