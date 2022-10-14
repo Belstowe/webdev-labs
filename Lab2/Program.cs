@@ -6,7 +6,6 @@ using YAMLObjects;
 
 class Program
 {
-    private static bool keepRunning = true;
     public static void Main(string[] args)
     {
         var yamlDeserializer = new DeserializerBuilder()
