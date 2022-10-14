@@ -21,6 +21,15 @@ foreach (var stat in configObject.Stats) {
 foreach (var action in configObject.Actions) {
     valeraBuilder.AddAction(action);
 }
+if (File.Exists(@"save.yaml")) {
+    using (var reader = new StreamReader(@"save.yaml")) {
+        var yamlParser = new Parser(reader);
+        var saveStatsObject = yamlDeserializer.Deserialize<List<SaveState>>(yamlParser);
+        foreach (var saveStat in saveStatsObject) {
+            valeraBuilder.ModifyStat(saveStat.Name, saveStat.Value);
+        }
+    }
+}
 ValeraMan valera = valeraBuilder.Build();
 valera.Do("work");
 foreach (var stat in valera.Stats) {

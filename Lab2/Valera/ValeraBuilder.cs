@@ -59,6 +59,12 @@ namespace Valera
                 Consequences: action.Result.Select(conseq => TranslateModifier(conseq)).ToList()
             ));
         }
+        public void ModifyStat(string codename, int newValue) {
+            if (!_valera.Stats.ContainsKey(codename)) {
+                throw new Exception($"stat '{codename}' is undefined!");
+            }
+            _valera.Stats[codename] = _valera.Stats[codename] with { Value = newValue };
+        }
         public ValeraMan Build() {
             return _valera;
         }
