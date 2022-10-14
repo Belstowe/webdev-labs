@@ -102,10 +102,10 @@ actions:
       - stat: money
         val: 50
         conditions:
-          - stat: alcohol
+          - stat: mana
             op: '>'
             val: 40
-          - stat: alcohol
+          - stat: mana
             op: '<'
             val: 70
       - stat: fatigue
@@ -116,13 +116,13 @@ actions:
       - stat: health
         val: 90
         conditions:
-          - stat: alcohol
+          - stat: mana
             op: '<'
             val: 30
       - stat: happiness
         val: -3
         conditions:
-          - stat: alcohol
+          - stat: mana
             op: '>'
             val: 70
       - stat: mana
