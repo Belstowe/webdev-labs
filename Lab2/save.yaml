@@ -1,2 +1,10 @@
 - name: health
   value: 50
+- name: mana
+  value: 0
+- name: happiness
+  value: -4
+- name: fatigue
+  value: 80
+- name: money
+  value: 200

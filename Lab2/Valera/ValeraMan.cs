@@ -28,12 +28,14 @@ namespace Valera
                     applyConsequence();
             }
         }
-        public void Do(string actionCodename) {
+        public bool Do(string actionCodename) {
             if (Actions.TryGetValue(actionCodename, out var action)) {
                 ExecuteAction(action.Conditions, action.Consequences);
                 foreach (var eventAction in Events)
                     ExecuteAction(eventAction.Conditions, eventAction.Consequences);
-            } else throw new Exception($"no such action '{actionCodename}'!");
+                return true;
+            }
+            return false;
         }
     }
 }
