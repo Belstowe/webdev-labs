@@ -134,3 +134,6 @@ _NCrunch*
 
 # VS Code
 .vscode/
+
+# Save file
+save.yaml
