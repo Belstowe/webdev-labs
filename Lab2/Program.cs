@@ -57,14 +57,18 @@ class Program
             SaveValera(valera, saveFilePath);
         };
 
-        while (true) {
-            foreach (var stat in valera.Stats) {
-                Console.WriteLine($"{stat.Key} : {stat.Value}");
+        try {
+            while (true) {            
+                foreach (var stat in valera.Stats) {
+                    Console.WriteLine($"{stat.Key} : {stat.Value}");
+                }
+                string userInput = Console.ReadLine() ?? "";
+                if (!valera.Do(userInput)) {
+                    Console.WriteLine($"no such action '{userInput}'!");
+                }
             }
-            string userInput = Console.ReadLine() ?? "";
-            if (!valera.Do(userInput)) {
-                Console.WriteLine($"no such action '{userInput}'!");
-            }
+        } catch (Exception) {
+            SaveValera(valera, saveFilePath);
         }
     }
 }
