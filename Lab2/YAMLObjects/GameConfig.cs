@@ -4,5 +4,6 @@ namespace YAMLObjects
     {
         public List<Stat> Stats = new List<Stat>();
         public List<Action> Actions = new List<Action>();
+        public List<GameOverCondition> GameOverConditions = new List<GameOverCondition>();
     }
 }

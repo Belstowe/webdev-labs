@@ -4,6 +4,7 @@ namespace Valera
     {
         public Dictionary<string, (string Name, int Value)> Stats
             = new Dictionary<string, (string Name, int Value)>();
+        public Dictionary<string, int> DefaultValues = new Dictionary<string, int>();
         public Dictionary<string, (string Name, List<Func<bool>> Conditions, List<Action> Consequences)> Actions
             = new Dictionary<string, (string Name, List<Func<bool>> Conditions, List<Action> Consequences)>();
         public List<(List<Func<bool>> Conditions, List<Action> Consequences)> Events

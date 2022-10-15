@@ -37,6 +37,7 @@ namespace Valera
         }
         public void AddStat(YAMLObjects.Stat stat) {
             _valera.Stats.Add(stat.Codename, (stat.Name ?? stat.Codename, stat.Start));
+            _valera.DefaultValues.Add(stat.Codename, stat.Start);
             if (stat.Min != null) {
                 _valera.Events.Add((
                     Conditions: new List<Func<bool>>{ () => _valera.Stats[stat.Codename].Value < stat.Min },
@@ -57,6 +58,19 @@ namespace Valera
                 Name: action.Name ?? action.Codename,
                 Conditions: action.Conditions.Select(cond => TranslateCondition(cond)).ToList(),
                 Consequences: action.Result.Select(conseq => TranslateModifier(conseq)).ToList()
+            ));
+        }
+        public void AddDeathCondition(YAMLObjects.GameOverCondition deathCondition) {
+            _valera.Events.Add((
+                Conditions: deathCondition.Conditions.Select(cond => TranslateCondition(cond)).ToList(),
+                Consequences: new List<Action>{
+                    () => {
+                        Console.WriteLine(deathCondition.Message);
+                        foreach (var stat in _valera.Stats.Keys) {
+                            ModifyStat(stat, _valera.DefaultValues.GetValueOrDefault(stat, 0));
+                        }
+                    }
+                }
             ));
         }
         public void ModifyStat(string codename, int newValue) {

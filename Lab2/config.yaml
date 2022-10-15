@@ -129,3 +129,15 @@ actions:
         val: -50
       - stat: fatigue
         val: -70
+
+game_over_conditions:
+  - message: 'Валера повесился :('
+    conditions:
+      - stat: happiness
+        op: '<='
+        val: -10
+  - message: 'Валера умер от сердечного приступа :('
+    conditions:
+      - stat: health
+        op: '<='
+        val: 0

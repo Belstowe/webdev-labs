@@ -27,6 +27,9 @@ class Program
         foreach (var action in configObject.Actions) {
             valeraBuilder.AddAction(action);
         }
+        foreach (var deathCondition in configObject.GameOverConditions) {
+            valeraBuilder.AddDeathCondition(deathCondition);
+        }
         if (File.Exists(saveFilePath)) {
             using (var reader = new StreamReader(saveFilePath)) {
                 var yamlParser = new Parser(reader);
@@ -58,7 +61,7 @@ class Program
         };
 
         try {
-            while (true) {            
+            while (true) {
                 foreach (var stat in valera.Stats) {
                     Console.WriteLine($"{stat.Key} : {stat.Value}");
                 }
