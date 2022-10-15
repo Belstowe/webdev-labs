@@ -62,9 +62,15 @@ class Program
 
         try {
             while (true) {
+                Console.WriteLine("=====");
                 foreach (var stat in valera.Stats) {
-                    Console.WriteLine($"{stat.Key} : {stat.Value}");
+                    Console.WriteLine($"{stat.Value.Name}: {stat.Value.Value}");
                 }
+                Console.WriteLine("---");
+                foreach (var action in valera.Actions) {
+                    Console.WriteLine($"{action.Key} => {action.Value.Name}");
+                }
+                Console.WriteLine("=====");
                 string userInput = Console.ReadLine() ?? "";
                 if (!valera.Do(userInput)) {
                     Console.WriteLine($"no such action '{userInput}'!");
