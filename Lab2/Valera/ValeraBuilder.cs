@@ -7,7 +7,7 @@ namespace Valera
         public ValeraBuilder() {
             _valera = new ValeraMan();
         }
-        
+
         private Func<bool> TranslateCondition(YAMLObjects.Condition condition) {
             switch (condition.Operand) {
                 case YAMLObjects.ComparisonOperand.Greater:
